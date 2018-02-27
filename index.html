@@ -1,0 +1,200 @@
+<!doctype html>
+<html class="z-bxsbb">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>Aspect Ratio Boxes</title>
+<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="css/style.css">
+<!-- <link rel="stylesheet" href="highlight/prettify.css"> -->
+<script src="js/jquery.js"></script>
+</head>
+<body>
+
+<div class="mn">
+	<h2>宽高等比例</h2>
+
+	<section class="paddingTop">
+		<div class="col">
+			<h3>paddingTop</h3>
+			<div class="demo">
+				<div class="box">
+					<div class="inside">
+						paddingTop
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col">
+			<div class="tip">code</div>
+			<div class="demo">
+					<pre class="code"><code class="html">&lt;div class="box"&gt;
+	&lt;div class="inside"&gt;内容&lt;/div&gt;
+&lt;/div&gt;
+
+</code></pre>
+				<pre class="code"><code class="css">.box{
+	width: 200px;
+	height: 0;
+	padding-top: 200px;
+	overflow: hidden;
+	background: lightcoral;
+}
+				</code></pre>
+			</div>
+		</div>
+	</section>
+
+	<section class="paddingTop__autoHeight">
+		<div class="col">
+			<h3>paddingTop -- 高度自适应</h3>
+			<div class="demo">
+				<div class="box">
+					<div class="inside">
+						paddingTop
+					</div>
+				</div>
+				<div class="box">
+					<div class="inside">
+						行行重行行，与君生别离。
+						<br>相去万余里，各在天一涯。
+						<br>道路阻且长，会面安可知？
+						<br>胡马依北风，越鸟巢南枝。
+						<br>相去日已远，衣带日已缓。
+						<br>浮云蔽白日，游子不顾返。
+						<br>思君令人老，岁月忽已晚。
+						<br>弃捐勿复道，努力加餐饭。
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col">
+			<div class="tip">code</div>
+			<div class="demo">
+					<pre class="code"><code class="html">&lt;div class="box"&gt;
+    &lt;div class="inside"&gt;内容&lt;/div&gt;
+&lt;/div&gt;
+
+</code></pre>
+				<pre class="code"><code class="css">.box{
+	width: 50%;
+	overflow: hidden;
+	background: lightcoral;
+}
+</code></pre>
+<pre class="code"><code class="css">.box:before{
+	content: "";
+	float: left;
+	height: 0;
+	padding-top: 100%;
+}
+</code></pre>
+			</div>
+		</div>
+	</section>
+
+	<section class="paddingTop__custom">
+		<div class="col">
+			<h3>paddingTop -- 自定义</h3>
+			<div class="tip">form: https://css-tricks.com/aspect-ratio-boxes/</div>
+			<div class="demo">
+				<div style="--aspect-ratio:1;">
+					<div class="inner">1:1</div>
+				</div>
+
+				<div style="--aspect-ratio:4/3;">
+					<div class="inner">4:3</div>
+				</div>
+				
+			</div>
+		</div>
+		<div class="col">
+			<div class="tip">code</div>
+			<div class="demo">
+					<pre class="code"><code class="html">&lt;div class="box" style="--aspect-ratio:1;"&gt;
+    &lt;div class="inside"&gt;1:1&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="box" style="--aspect-ratio:4/3;"&gt;
+    &lt;div class="inside"&gt;4:3&lt;/div&gt;
+&lt;/div&gt;
+
+</code></pre>
+				<pre class="code"><code class="css">[style*="--aspect-ratio"] {
+	position: relative;
+	background: lightcoral;
+}
+
+[style*="--aspect-ratio"]:before {
+	content: "";
+	display: block;
+	padding-bottom: calc(100% / (var(--aspect-ratio)));
+}
+
+[style*="--aspect-ratio"] > :first-child {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}  
+				</code></pre>
+			</div>
+		</div>
+	</section>
+
+	<section class="svg">
+		<div class="col">
+			<h3>svg</h3>
+			<div class="tip">https://codeburst.io/keeping-aspect-ratio-with-html-and-no-padding-tricks-40705656808b</div>
+			<div class="demo">
+				<div class="box">
+					<svg viewBox="0 0 1 1"></svg>
+					<div class="inside">
+						1:1
+					</div>
+				</div>
+
+				<div class="box">
+					<svg viewBox="0 0 4 3"></svg>
+					<div class="inside">
+						4:3
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col">
+			<div class="tip">code</div>
+			<div class="demo">
+				<pre class="code"><code class="html">&lt;div class="box"&gt;
+    &lt;svg viewBox="0 0 1 1"&gt;&lt;/svg&gt;
+    &lt;div class="inside"&gt;1:1&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="box"&gt;
+    &lt;svg viewBox="0 0 4 3"&gt;&lt;/svg&gt;
+    &lt;div class="inside"&gt;4:3&lt;/div&gt;
+&lt;/div&gt;
+
+</code></pre>
+    <pre class="code"><code class="css">.box{
+    display: grid;
+}
+.box > * {
+    grid-area: 1 / 1 / 2 / 2;
+}
+</code></pre>
+	</section>
+	
+</div>
+
+<link rel="stylesheet" href="highlight/styles/default.css">
+<script src="highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+</body>
+</html>

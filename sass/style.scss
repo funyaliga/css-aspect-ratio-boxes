@@ -1,0 +1,102 @@
+
+.paddingTop{
+    .box{
+        width: 200px;
+        height: 0;
+        padding-top: 200px;
+        overflow: hidden;
+        background: lightcoral;
+
+        position: relative;
+        .inside{
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+    }
+}
+
+.paddingTop__autoHeight{
+    .box{
+        width: 200px;
+        // height: 0;
+        // padding-top: 50%;
+        overflow: hidden;
+        background: lightcoral;
+
+        position: relative;
+        margin-bottom: 20px;
+        &:before{
+            content: "";
+            float: left;
+            width: 0;
+            height: 0;
+            padding-top: 100%;
+        }
+        .inside{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            font-size: 14px;
+            line-height: 2.4;
+            color: #fff;
+        }
+    }
+}
+.paddingTop__custom{
+    .col:first-child .demo{
+        width: 220px;
+    }
+    [style*="--aspect-ratio"] {
+        position: relative;
+        background: lightcoral;
+        margin-bottom: 20px;     
+    }
+    [style*="--aspect-ratio"] > :first-child {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+    }
+    [style*="--aspect-ratio"]:before {
+        content: "";
+        display: block;
+        padding-bottom: calc(100% / (var(--aspect-ratio)));
+    }
+  
+    [style*="--aspect-ratio"] > :first-child {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }  
+}
+
+.svg{
+    .box{
+        display: grid;
+        width: 200px;
+        background: lightcoral;
+        margin-bottom: 20px;
+    }
+    .box > * {
+        grid-area: 1 / 1 / 2 / 2;
+    }
+    .inside{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        font-size: 14px;
+        line-height: 2.4;
+        color: #fff;
+    }
+}
